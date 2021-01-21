@@ -11,18 +11,30 @@ import java.util.Arrays;
 
 @SpringBootApplication
 public class Spring5webappApplication {
-   static   String baseUrl = "http://localhost:8080/api/v1/sms/send/otp";
+   static   String send_opt_Url = "http://localhost:8080/api/v1/sms/send/otp";
+   static String verify_otp_url="http://localhost:8080/api/v1/sms/verify/otp";
+   static RestTemplate restTemplate = new RestTemplate();
     public static void main(String[] args) throws URISyntaxException {
         SpringApplication.run(Spring5webappApplication.class, args);
-       sendOtp("959256275319");
+       //sendOtp("959256275319");
+       verifyOtp("959256275319",776718);
+    }
+
+    private static void verifyOtp(String phone, int otp) {
+        verify_otp_url+="?customerPhone="+ phone;
+        verify_otp_url+="&inputOtp="+otp;
+
+        HttpHeaders httpHeaders = getHeaders();
+        HttpEntity<String> httpEntity = new HttpEntity<>(httpHeaders);
+        ResponseEntity<String> responseEntity = restTemplate.exchange(verify_otp_url,HttpMethod.GET, httpEntity, String.class);
+        System.out.println(responseEntity.getBody());
     }
 
     private static void sendOtp(String phone) {
-        String restUrl = baseUrl+"?customerPhone="+ phone;
-        RestTemplate restTemplate = new RestTemplate();
+        send_opt_Url+="?customerPhone="+ phone;
         HttpHeaders httpHeaders = getHeaders();
         HttpEntity<String> httpEntity = new HttpEntity<>(httpHeaders);
-        ResponseEntity<String> responseEntity = restTemplate.exchange(restUrl,HttpMethod.GET, httpEntity, String.class);
+        ResponseEntity<String> responseEntity = restTemplate.exchange(send_opt_Url,HttpMethod.GET, httpEntity, String.class);
         System.out.println(responseEntity.getHeaders());
     }
     private static HttpHeaders getHeaders () {
