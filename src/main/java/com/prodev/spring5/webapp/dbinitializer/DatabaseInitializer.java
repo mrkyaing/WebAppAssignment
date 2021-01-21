@@ -6,8 +6,10 @@ import com.prodev.spring5.webapp.entity.Publisher;
 import com.prodev.spring5.webapp.repository.AddressRepository;
 import com.prodev.spring5.webapp.repository.OrganizationRepository;
 import com.prodev.spring5.webapp.repository.PublisherRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +20,8 @@ public class DatabaseInitializer implements CommandLineRunner {
     PublisherRepository publisherRepository;
     AddressRepository addressRepository;
     OrganizationRepository organizationRepository;
+
+
 
     public DatabaseInitializer(PublisherRepository publisherRepository, AddressRepository addressRepository, OrganizationRepository organizationRepository) {
         this.publisherRepository = publisherRepository;
@@ -85,5 +89,7 @@ public class DatabaseInitializer implements CommandLineRunner {
             System.out.println(o.toString());
         }
 
-    }
+    }//end of  run method
+
+
 }
