@@ -18,15 +18,15 @@ public class Spring5webappApplication {
    public static void main(String[] args) throws URISyntaxException {
         SpringApplication.run(Spring5webappApplication.class, args);
        try {
-          String status=sendOtp("9592562753199");
+          String status=sendOtp("959256275319");
            System.out.println(status);
        }catch (Exception e){
            System.out.println(e.getMessage());
        }
 
        try {
-               String status=verifyOtp("959256275319",153149);
-               System.out.println("register success with otp");
+               String status=verifyOtp("959256275319",650873);
+               System.out.println(status);
        }catch (Exception e){
            System.out.println(e.getMessage());
        }
